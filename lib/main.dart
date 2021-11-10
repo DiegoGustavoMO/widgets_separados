@@ -13,7 +13,7 @@ void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  //este es un contructor (build) donde se construye el widget y que retorna
+  //este es un constructor (build) donde se construye el widget y que retorna
   //un widget
 
   @override
@@ -55,14 +55,15 @@ class _InicioState extends State<Inicio> {
       //appBar: AppBar(
       // title: const Text("Widgets"),
       //),
-      //el widget comlum sirve para organizar los demas widgets en columnas
+      //el widget column sirve para organizar los demas widgets en columnas
       //el limitante es que al agregar contenido dependiendo de la pantalla
       //no muestra todo a menos que se configure propiedad de tamaño
       //si lo que se quiere mostrar es una lista en forma de columna
       //entonces se puede usar el widget ListView
 
       //en el body (cuerpo) podemos poner cualquier widget
-      //en el body en este caso se llama al widget cuerpo y por ende su contenido
+      //en el body en este caso, se llama al widget cuerpo y por ende el
+      // contenido de cuerpo() se pasa al body
       body: cuerpo(),
     );
   }
