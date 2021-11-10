@@ -49,10 +49,12 @@ class _InicioState extends State<Inicio> {
     //llamado Scaffold()
     //debemos recordar que hay widgets que son contenedores de otros widgets
     //por eso se ve como si fuera una clase dentro de otra clase
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Widgets"),
-      ),
+      //si quiero quitarle el titulo a la pagina del aplicativo quito el appbar
+      //appBar: AppBar(
+      // title: const Text("Widgets"),
+      //),
       //el widget comlum sirve para organizar los demas widgets en columnas
       //el limitante es que al agregar contenido dependiendo de la pantalla
       //no muestra todo a menos que se configure propiedad de tamaño
@@ -71,12 +73,87 @@ class _InicioState extends State<Inicio> {
 //separarlos
 
 //en este caso se crea un widget(cuerpo) que retorna un Widget
-//en este caso retorna un Row (fila) con un children (hijos) que seria una lista
-//de widgets si quisiera , pero en este caso solo agrego un texto
+//en este caso retorna un container o contenedor
 Widget cuerpo() {
-  return Row(
-    children: const <Widget>[
-      Text("Hola"),
-    ],
+  return Container(
+    decoration: const BoxDecoration(
+      image: DecorationImage(
+          image: NetworkImage(
+            "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg",
+            scale: 1,
+          ),
+          fit: BoxFit.cover),
+    ),
+    //al poner el child en un center entonces nos centra el contenido
+    child: Center(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        nombre(),
+        campoUsuario(),
+        campoContra(),
+        //sizedbox para generar un espacio
+        const SizedBox(
+          height: 15,
+        ),
+        botonEntrar(),
+      ],
+    )),
+  );
+}
+
+//se crean los widgets de cada campo aparte y se agregar al widget principal
+//que se llama cuerpo  y este a su vez es llamado en el body de la aplicacion
+
+//este widget es para mostrar un mensaje de inicio en este caso para el login
+Widget nombre() {
+  return const Text("Registrate",
+      style: TextStyle(
+          color: Colors.white, fontSize: 35.0, fontWeight: FontWeight.bold));
+}
+
+//este widget genera un container con el campo de texto para ingresar un usuario
+Widget campoUsuario() {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+    child: const TextField(
+      decoration: InputDecoration(
+        hintText: "Usuario",
+        fillColor: Colors.white,
+        filled: true,
+      ),
+    ),
+  );
+}
+
+//este widget genera un campo para la parte de al contraseña
+Widget campoContra() {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+    child: const TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: "Constraseña",
+        fillColor: Colors.white,
+        filled: true,
+      ),
+    ),
+  );
+}
+
+//este widget genera el boton para el ingreso
+Widget botonEntrar() {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: Colors.blue,
+      onPrimary: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 20.0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      side: const BorderSide(color: Colors.white, width: 1.0),
+      minimumSize: const Size(10.0, 10.0),
+    ),
+    onPressed: () {},
+    child: const Text('Ingresar',
+        style: TextStyle(fontSize: 25.0, color: Colors.white)),
   );
 }
